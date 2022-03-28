@@ -1,20 +1,21 @@
 package com.entity;
 
-import com.entity.Road;
-
 import java.util.ArrayList;
 
 public class City {
+
     private ArrayList<Road> roads;
-    private double costOfTravel;
+    private double costOfArrivingByHighway;
+    private double costOfArrivingByRailway;
 
     public City() {
-        costOfTravel = Double.MAX_VALUE;
+        costOfArrivingByHighway = Double.MAX_VALUE;
+        costOfArrivingByRailway = Double.MAX_VALUE;
     }
 
     public City(ArrayList<Road> roads, double costOfTravel) {
         this.roads = roads;
-        this.costOfTravel = costOfTravel;
+        this.costOfArrivingByHighway = costOfTravel;
     }
 
     public ArrayList<Road> getRoads() {
@@ -25,17 +26,23 @@ public class City {
         this.roads.add(road);
     }
 
-    public double getCostOfTravel() {
-        return costOfTravel;
+    public double getCostOfArrivingByHighway() {
+        return costOfArrivingByHighway;
     }
 
-    public void setCostOfTravel(double costOfTravel) {
-        this.costOfTravel = costOfTravel;
+    public void setCostOfArrivingByHighway(double costOfArrivingByHighway) {
+        this.costOfArrivingByHighway = costOfArrivingByHighway;
     }
 
-    public void minCost(double newCostOfTravel) {
-        if (this.costOfTravel > newCostOfTravel){
-            this.costOfTravel = newCostOfTravel;
+    public void minCostOfHighway(double newCostOfArrivingByHighway) {
+        if (this.costOfArrivingByHighway > newCostOfArrivingByHighway){
+            this.costOfArrivingByHighway = newCostOfArrivingByHighway;
+        }
+    }
+
+    public void minCostOfRailway(double newCostOfArrivingByRailway) {
+        if (this.costOfArrivingByRailway > newCostOfArrivingByRailway){
+            this.costOfArrivingByRailway = newCostOfArrivingByRailway;
         }
     }
 }
