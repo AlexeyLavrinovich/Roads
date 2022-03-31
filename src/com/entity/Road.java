@@ -41,4 +41,12 @@ public class Road {
     public boolean equals(Road road) {
         return this.typeOfRoad == road.getTypeOfRoad();
     }
+
+    public boolean isHighway(){
+        return this.typeOfRoad == 0;
+    }
+
+    public boolean isRailway(){
+        return this.typeOfRoad == 1;
+    }
 }

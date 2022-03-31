@@ -7,15 +7,21 @@ public class City {
     private ArrayList<Road> roads;
     private double costOfArrivingByHighway;
     private double costOfArrivingByRailway;
+    private int marker;
 
     public City() {
+        roads = new ArrayList<>();
         costOfArrivingByHighway = Double.MAX_VALUE;
         costOfArrivingByRailway = Double.MAX_VALUE;
+        marker = 0;
     }
 
-    public City(ArrayList<Road> roads, double costOfTravel) {
-        this.roads = roads;
-        this.costOfArrivingByHighway = costOfTravel;
+    public int getMarker() {
+        return marker;
+    }
+
+    public void setMarker(int marker) {
+        this.marker = marker;
     }
 
     public ArrayList<Road> getRoads() {
@@ -32,6 +38,14 @@ public class City {
 
     public void setCostOfArrivingByHighway(double costOfArrivingByHighway) {
         this.costOfArrivingByHighway = costOfArrivingByHighway;
+    }
+
+    public double getCostOfArrivingByRailway() {
+        return costOfArrivingByRailway;
+    }
+
+    public void setCostOfArrivingByRailway(double costOfArrivingByRailway) {
+        this.costOfArrivingByRailway = costOfArrivingByRailway;
     }
 
     public void minCostOfHighway(double newCostOfArrivingByHighway) {

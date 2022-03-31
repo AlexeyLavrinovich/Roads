@@ -11,6 +11,7 @@ public class Starter {
         try{
             City[] cities = Creator.creatMap(nameOfInFile);
 
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
