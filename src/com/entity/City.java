@@ -8,12 +8,22 @@ public class City {
     private double costOfArrivingByHighway;
     private double costOfArrivingByRailway;
     private int marker;
+    private int previousTypeOfRoad;
 
     public City() {
         roads = new ArrayList<>();
         costOfArrivingByHighway = Double.MAX_VALUE;
         costOfArrivingByRailway = Double.MAX_VALUE;
         marker = 0;
+        previousTypeOfRoad = -1;
+    }
+
+    public int getPreviousTypeOfRoad() {
+        return previousTypeOfRoad;
+    }
+
+    public void setPreviousTypeOfRoad(int previousTypeOfRoad) {
+        this.previousTypeOfRoad = previousTypeOfRoad;
     }
 
     public int getMarker() {

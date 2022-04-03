@@ -68,18 +68,41 @@ public class Creator {
         City city = new City();
         ArrayList<Road> roads;
         route.add(findFirstCity(cities));
-        int previousType = -1;
         while(!route.isEmpty()){
             city = route.get(0);
             roads = city.getRoads();
             for (Road road : roads) {
-                if (checkType(previousType, road.getTypeOfRoad())){
+                if (checkType(city.getPreviousTypeOfRoad(), road.getTypeOfRoad())){
                     if(road.isHighway()) {
-                        // TODO тут какая-то параша, надо поправить на минимальную стоимость
-                        // TODO нужно добавить в класс City предыщий тип дороги
-                        cities[road.getNextCity()].setCostOfArrivingByHighway(minCost(cities[road.getNextCity()].getCostOfArrivingByHighway(), road.getCostOfRoad() + city.getCostOfArrivingByHighway()));
+                        cities[road.getNextCity()].setCostOfArrivingByHighway(
+                                minCost(cities[road.getNextCity()].getCostOfArrivingByHighway(), road.getCostOfRoad() +
+                                        minCost(city.getCostOfArrivingByHighway(), city.getCostOfArrivingByRailway())));
+                    } else {
+                        cities[road.getNextCity()].setCostOfArrivingByRailway(
+                                minCost(cities[road.getNextCity()].getCostOfArrivingByRailway(), road.getCostOfRoad() +
+                                        minCost(city.getCostOfArrivingByHighway(), city.getCostOfArrivingByRailway())));
+                    }
+                } else {
+                    if(road.isHighway()) {
+                        cities[road.getNextCity()].setCostOfArrivingByHighway(
+                                minCost(cities[road.getNextCity()].getCostOfArrivingByHighway(), 1.1 * road.getCostOfRoad() +
+                                        minCost(city.getCostOfArrivingByHighway(), city.getCostOfArrivingByRailway())));
+                    } else {
+                        cities[road.getNextCity()].setCostOfArrivingByRailway(
+                                minCost(cities[road.getNextCity()].getCostOfArrivingByRailway(), 1.1 * road.getCostOfRoad() +
+                                        minCost(city.getCostOfArrivingByHighway(), city.getCostOfArrivingByRailway())));
                     }
                 }
+
+                /*
+                TODO: цены выставлены, теперь добавление города и убирание предыдущего
+                                 как все делаем: добавляем город, дальше смотрим, есть ли вхождение города
+                                 если да, то мы их сравниваем и выкидываем тот который жирнее
+                                 + надо добавить проверку на то что это город последний
+                                 + сортировка
+
+                 */
+
             }
         }
     }
